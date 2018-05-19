@@ -4,7 +4,8 @@
   "description": "- Getting Started With GraphQL.js     - https://graphql.org/graphql-js/",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon server.js",
+    "json:server": "json-server --watch db.json"
   },
   "repository": {
     "type": "git",
@@ -21,6 +22,11 @@
     "express": "^4.16.3",
     "express-graphql": "^0.6.12",
     "graphql": "^0.13.2",
-    "lodash":"^4.17.10"
+    "lodash": "^4.17.10",
+    "axios":"^0.18.0"
+  },
+  "devDependencies": {
+    "json-server": "^0.12.2",
+    "nodemon":"^1.17.4"
   }
 }

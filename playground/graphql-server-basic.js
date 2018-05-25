@@ -1,11 +1,10 @@
 const express = require('express');
 const expressGraphQL = require('express-graphql');
-// const schema = require('./schema-basic');
-const schema = require('./schema-axios');
+
+const schema = require('../schema/schema-basic');
 
 const app = express();
 
-// Cause error: GraphQL middleware options must contain a schema.
 app.use('/graphql', expressGraphQL({
     schema,
     graphiql: true,   //can use the GraphiQL tool to manually issue GraphQL queries

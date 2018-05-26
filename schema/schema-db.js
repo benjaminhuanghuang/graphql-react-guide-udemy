@@ -37,13 +37,10 @@ const UserType = new GraphQLObjectType({
         },
         age: {
             type: GraphQLInt
-        }
-        ,
-        // Nested query
+        },
         company: {
             type: CompanyType,
-            reslove(parentValue, args) {
-                consloe.log('dafdasdf', parentValue.companyId)
+            resolve(parentValue, args) {
                 return axios.get(`http://localhost:3721/companies/${parentValue.companyId}`)
                     .then(resp => resp.data);
             }

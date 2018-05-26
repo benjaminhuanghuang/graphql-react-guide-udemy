@@ -5,23 +5,26 @@ const {
     GraphQLObjectType,
     GraphQLString,
     GraphQLInt,
-    GraphQLSchema
+    GraphQLSchema,
+    GraphQLList,
+    GraphQLNonNull
 } = graphql;
 
 const CompanyType = new GraphQLObjectType({
     name: 'Company',
-    fields: {
-        id: {
-            type: GraphQLString
-        },
-        name: {
-            type: GraphQLString
-        },
-        description: {
-            type: GraphQLString
+    fields: () => ({
+        id: { type: GraphQLString },
+        name: { type: GraphQLString },
+        description: { type: GraphQLString },
+        users: {
+            type: new GraphQLList(UserType),
+            resolve(parentValue, args) {
+                return axios.get(`http://localhost:3721/companies/${parentValue.id}/users`)
+                    .then(res => res.data)
+            }
         }
-    }
-})
+    })
+});
 
 const UserType = new GraphQLObjectType({
     name: 'User',
@@ -36,11 +39,13 @@ const UserType = new GraphQLObjectType({
             type: GraphQLInt
         }
         ,
+        // Nested query
         company: {
             type: CompanyType,
             reslove(parentValue, args) {
-                return axios.get(`http://localhost:3721/users/${parentValue.companyId}`)
-                .then(resp => resp.data);
+                consloe.log('dafdasdf', parentValue.companyId)
+                return axios.get(`http://localhost:3721/companies/${parentValue.companyId}`)
+                    .then(resp => resp.data);
             }
         }
     }
@@ -83,3 +88,20 @@ const RootQuery = new GraphQLObjectType({
 module.exports = new GraphQLSchema({
     query: RootQuery
 });
+
+
+/*
+Quyer:
+{
+	user(id: "23"){
+    id,
+    firstName,
+    age,
+    company {
+        id
+        name
+    }
+
+  }
+}
+*/

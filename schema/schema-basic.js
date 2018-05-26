@@ -48,3 +48,14 @@ const RootQuery = new GraphQLObjectType({
 module.exports = new GraphQLSchema({
     query: RootQuery
 });
+
+/*
+Quyer:
+{
+	user(id: "23"){
+    id,
+    firstName,
+    age
+  }
+}
+*/

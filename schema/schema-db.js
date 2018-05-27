@@ -12,6 +12,7 @@ const {
 
 const CompanyType = new GraphQLObjectType({
     name: 'Company',
+    // Using => funciton colusure to reslove circular reference
     fields: () => ({
         id: { type: GraphQLString },
         name: { type: GraphQLString },
@@ -82,6 +83,34 @@ const RootQuery = new GraphQLObjectType({
     }
 });
 
+const mutation = new GraphQLObjectType({
+    name: 'Mutation',
+    fields: {
+        addUser: {
+            type: UserType,
+            args: {
+                firstName: { type: new GraphQLNonNull(GraphQLString) },
+                age: { type: GraphQLInt },
+                companyId: { type: GraphQLString }
+            },
+            resolve(parentValue, { firstName, age, companyId }) {
+                return axios.post('http://localhost:3721/users', { firstName, age, companyId })
+                    .then(res => res.data);
+            }
+        },
+        deleteUser: {
+            type: UserType,
+            args: {
+                id: { type: new GraphQLNonNull(GraphQLString) }
+            },
+            resolve(parentValue, { id }) {
+                return axios.delete(`http://localhost:3721/users/${id}`)
+                    .then(res => res.data);
+            }
+        }
+    }
+});
+
 module.exports = new GraphQLSchema({
     query: RootQuery
 });
@@ -100,5 +129,27 @@ Quyer:
     }
 
   }
+}
+//  nest query
+{
+	company(id: "1", ){
+    id
+    name
+    users{
+      firstName
+      company{
+        name
+      }
+    }
+  }
+}
+// Query Fragments: give key to result 
+{
+    apple: company(id: "1"){
+        name
+    }
+    google: company(id: "2"){
+        name
+    }
 }
 */

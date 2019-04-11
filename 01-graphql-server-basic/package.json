@@ -1,0 +1,17 @@
+{
+  "name": "graphql-server-basic",
+  "main": "server.js",
+  "description": "",
+  "scripts": {
+    "dev": "nodemon server.js"
+  },
+  "dependencies": {
+    "express": "^4.16.4",
+    "graphql": "^14.2.1",
+    "express-graphql": "^0.7.1",
+    "lodash": "^1.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.11"
+  }
+}

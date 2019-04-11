@@ -1,18 +1,20 @@
+/*
+  Using graphql fetch data from seperate API
+*/
 const express = require('express');
 const expressGraphQL = require('express-graphql');
 
-// const schema = require('../schema/schema-basic');
-const schema = require('../schema/schema-db');
+const schema = require('./schema-api');
 
 const app = express();
 
 app.use('/graphql', expressGraphQL({
     schema,
-    graphiql: true,   //can use the GraphiQL tool to manually issue GraphQL queries
+    graphiql: true,   //enable GraphiQL tool at http://localhost:8964/graphql to send GraphQL queries
 }));
 
 app.listen(8964, () => {
-    console.log('Listening on port 8964')
+    console.log('Graphql serer is running on port 8964')
 });
 
 

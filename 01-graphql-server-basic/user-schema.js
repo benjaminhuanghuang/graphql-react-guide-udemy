@@ -28,6 +28,9 @@ const UserType = new GraphQLObjectType({
     }
 })
 
+/*
+    What's the meaning of root
+*/
 const RootQuery = new GraphQLObjectType({
     name: 'RootQueryTpye',
     fields: {

@@ -1,11 +1,9 @@
-import React from 'react';
 import ReactDOM from 'react-dom';
-
-const Root = () => {
-  return <div>Lyrical</div>
-};
+//
+import App from './app'
 
 ReactDOM.render(
-  <Root />,
+  <App />,
   document.querySelector('#root')
 );
+ 

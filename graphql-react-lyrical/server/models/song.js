@@ -1,19 +1,18 @@
 const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
 
-const SongSchema = new Schema({
+const songSchema = new mongoose.Schema({
   title: { type: String },
   user: {
-    type: Schema.Types.ObjectId,
+    type: mongoose.Schema.Types.ObjectId,
     ref: 'user'
   },
   lyrics: [{
-    type: Schema.Types.ObjectId,
+    type: mongoose.Schema.Types.ObjectId,
     ref: 'lyric'
   }]
 });
 
-SongSchema.statics.addLyric = function(id, content) {
+songSchema.statics.addLyric = function(id, content) {
   const Lyric = mongoose.model('lyric');
 
   return this.findById(id)
@@ -25,10 +24,11 @@ SongSchema.statics.addLyric = function(id, content) {
     });
 }
 
-SongSchema.statics.findLyrics = function(id) {
+songSchema.statics.findLyrics = function(id) {
   return this.findById(id)
     .populate('lyrics')
     .then(song => song.lyrics);
 }
 
-mongoose.model('song', SongSchema);
+const Song = mongoose.model('Song', songSchema);
+module.exports = Song

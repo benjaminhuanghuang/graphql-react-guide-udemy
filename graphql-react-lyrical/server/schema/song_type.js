@@ -10,8 +10,10 @@ const SongType = new GraphQLObjectType({
     title: { type: GraphQLString },
     lyrics: {
       type: new GraphQLList(LyricType),
-      resolve(parentValue) {
-        return Song.findLyrics(parentValue.id);
+      resolve: async (parentValue) => {
+        const song = await Song.findById(parentValue.id);
+        await song.populate('lyrics').execPopulate();
+        return song.lyrics;
       }
     }
   })

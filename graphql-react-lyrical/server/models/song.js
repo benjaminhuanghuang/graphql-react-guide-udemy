@@ -7,11 +7,7 @@ const songSchema = new mongoose.Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'
-  },
-  lyrics: [{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Lyric'
-  }]
+  }
 },{
   timestamps: true
 });

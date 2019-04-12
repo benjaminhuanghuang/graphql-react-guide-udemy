@@ -24,8 +24,17 @@ const mutation = new GraphQLObjectType({
         content: { type: GraphQLString },
         songId: { type: GraphQLID }
       },
-      resolve(parentValue, { content, songId }) {
-        return Song.addLyric(songId, content);
+      resolve: async (parentValue, { content, songId })=> {
+        const lyric = new Lyric(
+          {
+            song: songId,
+            content,
+          }
+        )
+        await lyric.save();
+        const song = await Song.findById(songId);
+        await song.populate('lyrics').execPopulate()
+        return song;
       }
     },
     likeLyric: {

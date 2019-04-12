@@ -15,12 +15,10 @@ const LyricType = new GraphQLObjectType({
     content: { type: GraphQLString },
     song: {
       type: require('./song_type'),
-      resolve(parentValue) {
-        return Lyric.findById(parentValue).populate('song')
-          .then(lyric => {
-            console.log(lyric)
-            return lyric.song
-          });
+      resolve: async (parentValue) => {
+        const lyric = await Lyric.findById(parentValue);
+        lyric.populate('song');
+        return lyric.song
       }
     }
   })

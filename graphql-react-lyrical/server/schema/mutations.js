@@ -33,15 +33,19 @@ const mutation = new GraphQLObjectType({
         )
         await lyric.save();
         const song = await Song.findById(songId);
-        await song.populate('lyrics').execPopulate()
+        // SongType will populate
+        // await song.populate('lyrics').execPopulate() 
         return song;
       }
     },
     likeLyric: {
       type: LyricType,
       args: { id: { type: GraphQLID } },
-      resolve(parentValue, { id }) {
-        return Lyric.like(id);
+      resolve: async (parentValue, { id }) => {
+        const lyric = await Lyric.findById(id);
+        lyric.likes ++;
+        await lyric.save();
+        return lyric;
       }
     },
     deleteSong: {

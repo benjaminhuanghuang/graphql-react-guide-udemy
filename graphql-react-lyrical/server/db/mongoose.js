@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const MONGO_URI = "mongodb://127.0.0.1:27017"
+const MONGO_URI = "mongodb://127.0.0.1:27017/graphql-lyric"
 
 mongoose.connect(MONGO_URI, {
   useNewUrlParser: true,

@@ -3,10 +3,6 @@
   "version": "1.0.0",
   "description": "Starter point for a graphQL course",
   "main": "index.js",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/StephenGrider/Lyrical-GraphQL"
-  },
   "scripts": {
     "dev": "nodemon index.js --ignore client"
   },
@@ -27,7 +23,7 @@
     "express-session": "^1.15.0",
     "graphql": "^14.2.1",
     "lodash": "^4.17.4",
-    "mongoose": "^4.7.8",
+    "mongoose": "^5.5.1",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
     "react": "16.8.6",

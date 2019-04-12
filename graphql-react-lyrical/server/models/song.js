@@ -6,29 +6,29 @@ const songSchema = new mongoose.Schema({
   title: { type: String },
   user: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'user'
+    ref: 'User'
   },
   lyrics: [{
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'lyric'
+    ref: 'Lyric'
   }]
+},{
+  timestamps: true
 });
 
-songSchema.statics.addLyric = function(id, content) {
-  return this.findById(id)
-    .then(song => {
-      const lyric = new Lyric({ content, song })
-      song.lyrics.push(lyric)
-      return Promise.all([lyric.save(), song.save()])
-        .then(([lyric, song]) => song);
-    });
-}
+// Virtul attribute of Song, Song(_id) -> Lyric(song)  1: N 
+songSchema.virtual('lyrics', {
+  ref: 'Lyric',
+  localField: '_id',
+  foreignField: 'song'
+})
 
-songSchema.statics.findLyrics = function(id) {
-  return this.findById(id)
-    .populate('lyrics')
-    .then(song => song.lyrics);
-}
+// Delete Song's lyric when Song is removed
+songSchema.pre('remove', async function (next) {
+  const song = this
+  await Lyric.deleteMany({ song: song._id })
+  next()
+})
 
 const Song = mongoose.model('Song', songSchema);
 module.exports = Song

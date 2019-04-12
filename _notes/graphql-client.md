@@ -1,4 +1,4 @@
-## Install
+## Install Appollo Client
 - ref https://www.howtographql.com/react-apollo/1-getting-started/
 ```
     npm i -S apollo-client-preset react-apollo graphql-tag graphql

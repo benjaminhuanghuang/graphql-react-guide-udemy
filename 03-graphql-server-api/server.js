@@ -4,7 +4,7 @@
 const express = require('express');
 const expressGraphQL = require('express-graphql');
 
-const schema = require('./schema-api');
+const schema = require('./schema');
 
 const app = express();
 

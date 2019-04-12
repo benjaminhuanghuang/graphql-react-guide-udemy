@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+//
+const Lyric = require('./lyric');
 
 const songSchema = new mongoose.Schema({
   title: { type: String },
@@ -13,8 +15,6 @@ const songSchema = new mongoose.Schema({
 });
 
 songSchema.statics.addLyric = function(id, content) {
-  const Lyric = mongoose.model('lyric');
-
   return this.findById(id)
     .then(song => {
       const lyric = new Lyric({ content, song })

@@ -46,3 +46,20 @@ const mutation = new GraphQLObjectType({
 });
 
 module.exports = mutation;
+
+/*
+
+mutation
+{
+  addSong(title: "1234"){
+    id
+  }
+}
+
+mutation
+{
+  addLyricToSong(songId: "5cafe2203c63fe65ad7f39ba", content:"abcde"){
+    id
+  }
+}
+*/

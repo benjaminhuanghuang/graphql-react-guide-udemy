@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.16.0",
+    "connect-history-api-fallback": "^1.6.0",
     "connect-mongo": "^1.3.2",
     "express": "^4.16.4",
     "express-graphql": "^0.7.1",

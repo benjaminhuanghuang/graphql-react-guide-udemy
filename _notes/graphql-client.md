@@ -18,7 +18,7 @@
 In contrast to working with REST APIs, you don’t have to deal with constructing your own HTTP requests any more.
 Instead you can simply write queries and mutations and send them using an **ApolloClient** instance.
 
-## Graphql and React Compents
+## Graphql and React components
 - ApolloClient
 
 - ApolloProvider
@@ -27,6 +27,21 @@ Instead you can simply write queries and mutations and send them using an **Apol
 - Apollo Store
     client side repository of all data that is coming form graphql server.
 
+
+## Fetch data in React component
+- Identify data required
+
+- Write graphql query
+
+- Bond query with component
+```
+    export default graphql(query)(SongList);
+```
+It will create a prop on react component
+```
+    this.props.data.mydata
+```
+- Access data
 
 ## Routing
 - https://www.howtographql.com/react-apollo/4-routing/

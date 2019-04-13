@@ -11,11 +11,11 @@ class SongCreate extends Component {
     }
   }
 
-  // onTitleChange = (event) => {
-  //   this.setState({
-  //     title: event.target.value
-  //   });
-  // }
+  onTitleChange = (event) => {
+    this.setState({
+      title: event.target.value
+    });
+  }
 
   onSubmit = (event) => {
     event.preventDefault();
@@ -26,12 +26,12 @@ class SongCreate extends Component {
     return (
       <div>
         <h3> Create a new Song</h3>
-        <form onSubmit={onSubmit}>
+        <form onSubmit={this.onSubmit}>
           <label>Son Title</label>
-          {/* <input
-            onChange={onTitleChange}
-            value={}
-          ></input> */}
+          <input
+            onChange={this.onTitleChange}
+            value={this.state.title}
+          ></input>
         </form>
       </div>)
   }

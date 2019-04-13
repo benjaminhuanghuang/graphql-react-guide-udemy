@@ -22,14 +22,14 @@
     "passport-local": "^1.0.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.4.3",
+    "babel-loader": "^8.0.5",
+    "@babel/preset-env": "^7.4.3",
+    "@babel/preset-react": "^7.0.0",
+    "css-loader": "^2.1.1",
+    "html-webpack-plugin": "^3.2.0",
     "nodemon": "^1.18.11",
-    "webpack": "^2.2.0",
-    "webpack-dev-middleware": "^1.9.0",
-    "html-webpack-plugin": "^2.26.0",
-    "babel-core": "^6.22.1",
-    "babel-loader": "^6.2.10",
-    "babel-preset-env": "^1.1.8",
-    "babel-preset-react": "^6.22.0",
-    "css-loader": "^0.26.1"
+    "webpack": "^4.30.0",
+    "webpack-dev-middleware": "^3.6.2"
   }
 }

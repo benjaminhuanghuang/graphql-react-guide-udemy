@@ -15,17 +15,14 @@ const UserSchema = new Schema({
 // procedure that modifies the password - the plain text password cannot be
 // derived from the salted + hashed version. See 'comparePassword' to understand
 // how this is used.
-UserSchema.pre('save', function save(next) {
+UserSchema.pre('save', async function save(next) {
   const user = this;
-  if (!user.isModified('password')) { return next(); }
-  bcrypt.genSalt(10, (err, salt) => {
-    if (err) { return next(err); }
-    bcrypt.hash(user.password, salt, null, (err, hash) => {
-      if (err) { return next(err); }
-      user.password = hash;
-      next();
-    });
-  });
+
+  // password is updated or user is first created
+  if (user.isModified('password')) {
+    user.password = await bcrypt.hash(user.password, 8)
+  }
+  next();
 });
 
 // We need to compare the plain text password (submitted whenever logging in)
@@ -39,4 +36,6 @@ UserSchema.methods.comparePassword = function comparePassword(candidatePassword,
   });
 };
 
-mongoose.model('user', UserSchema);
+const User = mongoose.model('User', UserSchema);
+
+module.exports = User

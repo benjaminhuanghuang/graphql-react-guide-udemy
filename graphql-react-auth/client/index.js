@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-const Root = () => {
-  return (
-    <div>
-      Auth Starter
-    </div>
-  );
-};
+//
+import "./style/style.css";
+import App from './App';
 
-ReactDOM.render(<Root />, document.querySelector('#root'));
+ReactDOM.render(
+  <App />,
+  document.querySelector('#root')
+);
+ 

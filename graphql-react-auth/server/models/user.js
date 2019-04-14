@@ -2,18 +2,11 @@ const bcrypt = require('bcryptjs')
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-// Every user has an email and password.  The password is not stored as
-// plain text - see the authentication helpers below.
 const userSchema = new Schema({
   email: String,
   password: String
 });
 
-// The user's password is never saved in plain text.  Prior to saving the
-// user model, we 'salt' and 'hash' the users password.  This is a one way
-// procedure that modifies the password - the plain text password cannot be
-// derived from the salted + hashed version. See 'comparePassword' to understand
-// how this is used.
 userSchema.pre('save', async function save(next) {
   const user = this;
 

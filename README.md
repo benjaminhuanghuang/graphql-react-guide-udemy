@@ -5,7 +5,8 @@
 - GraphQL with React The Complete Developers Guide Udemy- by Stephen Grider
     - https://www.udemy.com/graphql-with-react-course/
     - https://github.com/StephenGrider/Lyrical-GraphQL
-
+    - https://github.com/StephenGrider/auth-graphql-starter
+    
 - Getting Started With GraphQL.js
     - https://graphql.org/graphql-js/
 

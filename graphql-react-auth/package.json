@@ -1,10 +1,14 @@
 {
-  "name": "lyrical-graphql-server",
+  "name": "graphql-react-auth",
   "version": "1.0.0",
-  "description": "Starter point for a graphQL course",
-  "main": "server.js",
+  "description": "Starter pack for an auth-included graphql project",
+  "repository": {
+    "type": "git",
+    "url": "github.com/stephengrider"
+  },
+  "main": "index.js",
   "scripts": {
-    "dev": "nodemon server.js --ignore client"
+    "dev": "nodemon index.js --ignore client"
   },
   "author": "",
   "license": "ISC",

@@ -6,6 +6,9 @@ import gql from 'graphql-tag';
 
 //
 import fetchSong from '../queries/fetchSong'
+import LyricCreate from './LyricCreate';
+import LyricList from './LyricList';
+
 
 class SongDetail extends Component {
 
@@ -16,8 +19,12 @@ class SongDetail extends Component {
     }
     return (
       <div>
-         <Link to="/"> Back </Link>
-        {song.title}
+        <Link to="/"> Back </Link>
+        <h2>
+          {song.title}
+        </h2>
+        <LyricList lyrics={song.lyrics}/>
+        <LyricCreate songId={this.props.match.params.id}/>
       </div>
     );
   }

@@ -9,6 +9,7 @@ import SongDetail from './components/SongDetail';
 
 const client = new ApolloClient({
   uri: 'http://localhost:4000/graphql',
+  dataIdFormObject: o => o.id
 });
 
 const App = () => {

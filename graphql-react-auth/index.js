@@ -5,7 +5,7 @@ const app = require('./server/server');
 // a single bundle.js output of all of our client side Javascript
 const webpackMiddleware = require('webpack-dev-middleware');
 const webpack = require('webpack');
-const webpackConfig = require('../webpack.config.js');
+const webpackConfig = require('./webpack.config.js');
 app.use(webpackMiddleware(webpack(webpackConfig)));
 
 app.listen(4000, () => {

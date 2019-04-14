@@ -2,12 +2,12 @@ const express = require('express');
 const expressGraphQL = require('express-graphql');
 const session = require('express-session');
 const passport = require('passport');
-const passportConfig = require('./services/auth');
 const MongoStore = require('connect-mongo')(session);
 const schema = require('./schema/schema');
 
 // Create a new Express application
 const app = express();
+const MONGO_URI = "mongodb://127.0.0.1:27017/graphql-auth"
 
 require('./db/mongoose')
 

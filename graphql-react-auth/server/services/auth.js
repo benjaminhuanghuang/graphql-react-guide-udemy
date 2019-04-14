@@ -49,19 +49,21 @@ passport.use(new LocalStrategy({ usernameField: 'email' }, (email, password, don
 signup = async ({ email, password, req }) => {
   try {
     const user = new User({ email, password });
-    if (!email || !password) { throw new Error('You must provide an email and password.'); }
+    if (!email || !password) {
+      throw new Error('You must provide an email and password.');
+    }
 
     const existingUser = await User.findOne({ email });
     if (existingUser) {
       throw new Error('Email in use');
     }
     await user.save();
-    // await req.logIn(user);
+    await req.logIn(user);
     return user;
   }
   catch (ex) {
     console.log(ex.message);
-   }
+  }
 }
 
 // Logs in a user.  This will invoke the 'local-strategy' defined above in this
@@ -72,11 +74,13 @@ signup = async ({ email, password, req }) => {
 function login({ email, password, req }) {
   return new Promise((resolve, reject) => {
     passport.authenticate('local', (err, user) => {
-      if (!user) { reject('Invalid credentials.') }
-
+      if (!user) {
+        reject('Invalid credentials.')
+      }
+      console.log(user);
       req.login(user, () => resolve(user));
     })({ body: { email, password } });
-  });
+  }).catch(error => { console.log('caught', error); });;
 }
 
 module.exports = { signup, login };

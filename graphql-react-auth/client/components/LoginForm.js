@@ -9,17 +9,17 @@ import AuthForm from './AuthForm'
 
 class LoginForm extends Component {
   state = {
-    errors:[]
+    errors: []
   }
 
   onSubmit = ({ email, password }) => {
     this.props.mutate({
       variables: { email, password },
-      refetchQueries:[
+      refetchQueries: [
         query
       ]
-    }).catch(res=>{
-      const errors = res.graphQLError.map(error=> error.message);
+    }).catch(res => {
+      const errors = res.graphQLError.map(error => error.message);
       this.setState({
         errors
       })
@@ -37,4 +37,6 @@ class LoginForm extends Component {
   }
 }
 
-export default graphql(mutation)(LoginForm);
+export default graphql(query)(
+  graphql(mutation)(LoginForm)
+);

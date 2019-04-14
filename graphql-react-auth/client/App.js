@@ -6,6 +6,9 @@ import { ApolloProvider } from 'react-apollo';
 import Header from './components/Header';
 import LoginForm from './components/LoginForm';
 import SignupForm from './components/SignupForm';
+import Dashboard from './components/Dashboard';
+import RequiredAuth from './hoc/RequireAuth';
+
 
 const client = new ApolloClient({
   uri: 'http://localhost:4000/graphql',
@@ -25,6 +28,7 @@ const App = () => {
           <Switch>
             <Route path="/login" component={LoginForm}></Route>
             <Route path="/signup" component={SignupForm}></Route>
+            <Route path="/dashboard" component={RequiredAuth(Dashboard)}></Route>
           </Switch>
         </Router>
       </div>

@@ -6,6 +6,10 @@ const app = require('./server/server');
 const webpackMiddleware = require('webpack-dev-middleware');
 const webpack = require('webpack');
 const webpackConfig = require('./webpack.config.js');
+
+const history = require('connect-history-api-fallback');
+app.use(history());   // Should use it before webpackMiddleware
+
 app.use(webpackMiddleware(webpack(webpackConfig)));
 
 app.listen(4000, () => {

@@ -77,7 +77,6 @@ function login({ email, password, req }) {
       if (!user) {
         reject('Invalid credentials.')
       }
-      console.log(user);
       req.login(user, () => resolve(user));
     })({ body: { email, password } });
   }).catch(error => { console.log('caught', error); });;
